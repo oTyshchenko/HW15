@@ -1,0 +1,66 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <section>
+        <h2>Main table</h2>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Married</th>
+                <th>Country</th>
+                <th>Town</th>
+                <th>ID</th>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><a href="<%= user._id %> "><%= user.name %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.lastName %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.tel %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.email %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.company %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.position %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.age %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.sex %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.married %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.country %></a></td>
+                        <td><a href="<%= user._id %> "><%= user.town %></a></td>
+                        <td><a href="<%= user._id %> "><%= user._id %></a></td>
+                        <td><button class="delete" data-doc="<%= user._id %>">Delete</button></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </section>
+    <%- include('./partials/footer.ejs') %>
+
+    <script>
+        const del = document.querySelectorAll('.delete');
+
+        del.forEach((el) => {
+            el.addEventListener('click', (e) => {
+            const endpoint = `${el.dataset.doc}`
+
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                window.location.href = data.redirect
+            })
+        })
+        })
+
+    </script>
+</body>
+</html>

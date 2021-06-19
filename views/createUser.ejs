@@ -1,0 +1,38 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <section>
+        <h2>Create new user</h2>
+        <form action="/" method="POST">
+            <label for="name">Enter your name</label>
+            <input type="text" id="name" name="name">
+            <label for="lastName">Enter your last name</label>
+            <input type="text" id="lastName" name="lastName">
+            <label for="tel">Enter your phone</label>
+            <input type="tel" id="tel" name="tel">
+            <label for="email">Enter your email</label>
+            <input type="email" id="email" name="email">
+            <label for="">Enter your company</label>
+            <input type="text" id="company" name="company">
+            <label for="">Enter your position</label>
+            <input type="text" id="position" name="position">
+            <label for="age">Enter your age</label>
+            <input type="number" id="age" name="age">
+            <label for="">Choise your gender</label>
+            <input type="radio" value="male" name="sex">
+            <input type="radio" value="female" name="sex">
+            <input type="radio" value="other" name="sex">
+            <label for="">Are you married?</label>
+            <input type="radio" value="yes" name="married">
+            <input type="radio" value="no" name="married">
+            <label for="country">Enter your country</label>
+            <input type="text" id="country" name="country">
+            <label for="town">Enter your town</label>
+            <input type="text" id="town" name="town">
+            <button>Submit</button>
+        </form>
+    </section>
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

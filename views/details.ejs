@@ -1,0 +1,60 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <section>
+        <h2>Main table</h2>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Married</th>
+                <th>Country</th>
+                <th>Town</th>
+                <th>ID</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.lastName %></td>
+                    <td><%= user.tel %></td>
+                    <td><%= user.company %></td>
+                    <td><%= user.position %></td>
+                    <td><%= user.age %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.sex %></td>
+                    <td><%= user.married %></td>
+                    <td><%= user.country %></td>
+                    <td><%= user.town %></td>
+                    <td><%= user._id %></td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="delete" data-doc="<%= user._id %>">Delete</button>
+    </section>
+    <%- include('./partials/footer.ejs') %>
+    <script>
+        const del = document.getElementById('delete');
+
+        del.addEventListener('click', (e) => {
+            const endpoint = `${del.dataset.doc}`
+
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                window.location.href = data.redirect
+            })
+        })
+    </script>
+</body>
+</html>
