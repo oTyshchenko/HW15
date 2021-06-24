@@ -1,0 +1,14 @@
+﻿.main-btn {
+    padding: 3px 5px;
+    font-size: 14px;
+    color: black;
+    background-color: skyblue;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+        background-color: darkblue;
+    }
+}

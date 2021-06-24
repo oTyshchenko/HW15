@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+    border-bottom: 3px solid silver;
+
+    .logo {
+        padding: 0 20px;
+        font-size: 24px;
+        text-transform: uppercase;
+        color: darkslategrey;
+    }
+
+    .search {
+        padding: 0 20px;
+
+        .search-input {
+            margin-right: 5px;
+        }
+
+        .create {
+            margin-left: 20px;
+        }
+    }
+}
