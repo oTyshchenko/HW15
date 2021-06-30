@@ -4,7 +4,6 @@ const cors = require('cors');
 const { MONGO_URI } = require('./config');
 const People = require('./models/People');
 
-// Routes
 const peopleRoutes = require('./routes/api/people');
 
 const app = express();
@@ -16,7 +15,6 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, u
     .then(() => console.log(`MongoBD conected`))
     .catch((err) => console.log(err))
 
-// User routes
 app.use('/api/people', peopleRoutes);
 
 const PORT = 5000;

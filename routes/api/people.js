@@ -1,68 +1,55 @@
 const express = require('express');
 const router = express.Router();
-// people Model
+
 const People = require('../../models/People');
 
-// routes GET api/people
-// get all people
 router.get('/', async (req, res) => {
     try {
-        const peoples = await People.find();
-        if (!peoples) throw Error(`No items`);
-        res.status(200).json(peoples);                
-    } catch (err) {
-        res.status(400).json({ msg: err });
-    }
-})
-
-// routes GET api/people/:id
-// get one people
-router.get('/', async (req, res) => {
-    try {
-        const people = await People.findByid(req.params.id);
+        const people = await People.find();
         if (!people) throw Error(`No items`);
-        res.status(200).json(people);
+        res.status(200).json(people);                
     } catch (err) {
         res.status(400).json({ msg: err });
     }
 })
 
-// routes POST api/people
-// create new people
+router.get('/', async (req, res) => {
+    try {
+        const person = await People.findById(req.params.id);
+        if (!person) throw Error(`No items`);
+        res.status(200).json(person);
+    } catch (err) {
+        res.status(400).json({ msg: err });
+    }
+})
 
 router.post('/', async (req, res) => {
-    const newPeople = new People(req.body);
+    const newPerson = new People(req.body);
 
     try {
-        const people = await newPeople.save();
-        if (!people) throw Error(`Somthing went wrong while saveing people`);
-        res.status(200).json(people);
+        const person = await newPerson.save();
+        if (!person) throw Error(`Something went wrong while saving people`);
+        res.status(200);
     } catch (err) {
         res.status(400).json({ msg: err });
     }
 });
-
-// routes DELETE api/people/:id
-// delete people
 
 router.delete('/:id', async (req, res) => {
     try {
-        const people = await People.findByIdAndDelete(req.params.id);
-        if (!people) throw Error(`No people found`);
-        res.status(200).json({ succes: true });
+        const person = await People.findByIdAndDelete(req.params.id);
+        if (!person) throw Error(`No people found`);
+        res.status(200);
     } catch (err) {
         res.status(400).json({ msg: err });
     }
 });
 
-// routes UPDATE api/people/:id
-// update people
-
-router.patch('/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
-        const people = await People.findByIdAndUpdate(req.params.id, req.body);
-        if (!people) throw Error(`Something went wrong while updating the people`);
-        res.status(200).json({ succes: true });
+        const person = await People.findByIdAndUpdate(req.params.id, req.body);
+        if (!person) throw Error(`Something went wrong while updating the people`);
+        res.status(200);
     } catch (err) {
         res.status(400).json({ msg: err });
     }
