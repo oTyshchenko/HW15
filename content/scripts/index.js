@@ -128,24 +128,16 @@ addBtn.addEventListener('click', (e) => {
             town: inputTown.value
         })
     }).then(getRequest())
-    .then(popap.style.display = 'none');
+        .then(popap.style.display = 'none');
 })
 
 searchInput.addEventListener('keyup', () => {
     if (searchInput.value.length === 0) {
-        getRequest()
+        getRequest();
     } else {
         fetch(url)
             .then(res => res.json())
-            .then((data) => {
-                let currentData = [];
-                data.forEach((el) => {
-                    if (el.name.search(searchInput.value) != -1) {
-                        currentData.push(el)
-                    }
-                })
-                renderTable(currentData)
-            })
+            .then((data) => { renderTable(data.filter(el => el.name.search(searchInput.value) != -1)) });
     }
 })
 
